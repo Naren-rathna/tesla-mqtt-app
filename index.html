@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teslacare Innovations</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+       <div class="header-left">
+        <h1>Teslacare Innovations</h1>
+        <div class="status">
+         <span id="statusDot" class="dot red"></span>
+         <span id="statusText">Disconnected</span>
+		 <div id="userCount" style="font-weight: bold; margin-top: 4px; color: #2563eb;">Active Users: 0</div>
+         </div>
+        </div>
+       <div class="header-right">
+        <img src="logo.png" alt="Teslacare Logo" class="logo-img" />
+      </div>
+    </header>
+
+
+    <!-- Connect Page -->
+    <section id="loginPage" class="page">
+      <div class="login-form">
+        <h2>Login</h2>
+          <div class="grid">
+          <label class="full">
+            Username:
+            <input id="username" type="text" placeholder="Enter username" />
+          </label>
+          <label class="full">
+            Password:
+            <input id="password" type="password" placeholder="Enter password" />
+          </label>
+          <button id="loginBtn" type="button" class="full">Connect & Subscribe</button>
+        </div>
+        <div id="loginError" class="error-message hidden"></div>
+        <div class="demo-credentials">
+          <h4>Demo Credentials:</h4>
+          <p><strong>Username:</strong> Tesla1 | <strong>Password:</strong> Tesla111</p>
+          <p><strong>Username:</strong> Tesla2 | <strong>Password:</strong> Tesla222</p>
+          <p><strong>Username:</strong> Tesla3 | <strong>Password:</strong> Tesla333</p>
+        </div>
+      </div>
+    </section>
+
+ <!-- Dashboard -->
+<section id="dashboardPage" class="page hidden">
+  
+  <!-- Top Header Row: Topic + Disconnect -->
+  <div class="dashboard-header">
+    <div>
+      <strong>Subscribe Topic as:</strong> <span id="currentUser"></span>
+    </div>
+    <button id="logoutBtn" type="button" class="secondary">Disconnect</button>
+  </div>
+
+  <!-- Two-column layout -->
+  <div class="dashboard-layout">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-left">
+      <!-- Publish Section -->
+      <div class="publish-section">
+        <label for="publishMessage" class="publish-label">Publish</label>
+        <div class="publish-row">
+          <input id="publishMessage" type="text" placeholder="Type your message here..." />
+          <button id="sendBtn" type="button" disabled>Send</button>
+        </div>
+      </div>
+
+      <!-- Messages Section -->
+      <div class="messages-container">
+        <div class="messages-header" style="display:flex;justify-content:space-between;align-items:center;">
+          <span>Messages (Last 10)</span>
+          <button id="downloadBtn" class="secondary" type="button">Download</button>
+        </div>
+        <div id="messages" class="messages">
+          <div style="text-align:center;color:#6b7280;padding:40px;">
+            No messages yet. Send a message to get started!
+          </div>
+        </div>
+      </div>
+    </aside>
+   <main class="dashboard-center">
+   <h2>Dashboard</h2>
+
+  <!-- Controls Row -->
+  <div class="controls-row">
+    <!-- ON/OFF Button -->
+    <button id="toggleBtn" class="primary">OFF</button>
+
+    <!-- ON/OFF Switch -->
+    <label class="switch">
+      <input type="checkbox" id="toggleSwitch">
+      <span class="slider"></span>
+    </label>
+
+    <!-- Numeric Indicator -->
+    <div id="indicator" class="indicator">0</div>
+  </div>
+  </main>
+
+
+  </div>
+</section>
+
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
